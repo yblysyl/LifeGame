@@ -67,12 +67,27 @@ public class LifeGame extends JFrame {
 		timer.start();
 
 	}
-	
+	//统计当前存活个数
+	public void lifeSum() {
+		int s=0;
+		for (int i = 0; i < rows; i++) {
+			for (int j = 0; j < cols; j++) {
+				// 获取当前细胞的状态和周围八个细胞的存活数
+				int state = world[i][j];
+				// 根据规则更新下一时刻的状态
+				if (state == 1) {
+					s++;
+				}
+			}
+		}
+		System.out.println("当前存活个数："+s+";存活占总格数比例："+s/(rows*cols*1.0));
+	}
 	
 
 	// 定义一个方法，根据当前状态更新下一时刻的状态
 
 	public void update() {
+		lifeSum();
 		// 创建一个新的二维数组，用来存储下一时刻的状态
 		int[][] nextWorld = new int[rows][cols];
 
